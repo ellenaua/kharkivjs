@@ -1,0 +1,59 @@
+
+<dom-module id="simple-element">
+
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+      .green{
+        color: green;
+      }
+    </style>
+
+    <span class="green">Countdown: <b>[[countdown]]</b></span>
+
+  </template>
+
+  <script>
+    class SimpleElement extends Polymer.Element {
+      static get is() {
+        return 'simple-element';
+      }
+
+      constructor() {
+        super();
+      }
+
+      static get properties() {
+        return {
+          countdown: {
+            type: Number,
+            value: 15
+          }
+        }
+      }
+
+      ready(){
+        super.ready();
+        this.interval = setInterval(() => this._decreaseCount(), 1000);
+      }
+
+      _decreaseCount(){
+        if (this.countdown > 0) {
+          this.countdown--;
+        } else {
+          clearInterval(this.interval);
+        }
+      }
+
+      _getSecondsPassed(countdown){
+        return 15 - countdown;
+      }
+
+    }
+    customElements.define(SimpleElement.is, SimpleElement);
+  </script>
+
+</dom-module>
+
