@@ -1,0 +1,61 @@
+<link rel="import" href="./bower_components/app-route/app-route.html">
+<link rel="import" href="./bower_components/app-route/app-location.html">
+
+<dom-module id="my-app">
+
+  <template>
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+    <app-route route="{{route}}" pattern="/:page"
+               data="{{routeData}}"
+               tail="{{routeTail}}">
+    </app-route>
+    <app-route
+            route="{{routeTail}}"
+            pattern="/:id"
+            data="{{subRouteData}}">
+    </app-route>
+
+    <h1>My app</h1>
+
+    Current page is <b>{{routeData.page}}</b><br>
+    Current sub-page is <b>{{subRouteData.id}}</b>
+
+  </template>
+
+  <script>
+    class MyApp extends Polymer.Element {
+      static get is() {
+        return 'my-app';
+      }
+
+      constructor() {
+        super();
+      }
+
+      static get properties() {
+        return {
+          subRouteData: {
+            type: Object,
+            observer: 'onSubRouteDataChanged'
+          },
+          routeData: {
+            type: Object,
+            observer: 'onRouteDataChanged'
+          }
+        }
+      }
+
+      onRouteDataChanged(routeData){
+        console.log('Route changed: ', JSON.stringify(routeData));
+      }
+
+      onSubRouteDataChanged(subRouteData){
+        console.log('Sub-route changed: ', JSON.stringify(subRouteData));
+      }
+
+    }
+    customElements.define(MyApp.is, MyApp);
+  </script>
+
+</dom-module>
+

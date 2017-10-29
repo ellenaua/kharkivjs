@@ -1,5 +1,5 @@
 
-<dom-module id="simple-element">
+<dom-module id="countdown-timer">
 
   <template>
     <style>
@@ -11,14 +11,15 @@
       }
     </style>
 
+    <div id="title"></div>
     <span class="green">Countdown: <b>[[countdown]]</b></span>
 
   </template>
 
   <script>
-    class SimpleElement extends Polymer.Element {
+    class CountdownTimer extends Polymer.Element {
       static get is() {
-        return 'simple-element';
+        return 'countdown-timer';
       }
 
       constructor() {
@@ -36,6 +37,12 @@
 
       ready(){
         super.ready();
+        this.start(this.countdown);
+      }
+
+      start(from){
+        clearInterval(this.interval);
+        this.set('countdown', from);
         this.interval = setInterval(() => this._decreaseCount(), 1000);
       }
 
@@ -52,7 +59,7 @@
       }
 
     }
-    customElements.define(SimpleElement.is, SimpleElement);
+    customElements.define(CountdownTimer.is, CountdownTimer);
   </script>
 
 </dom-module>

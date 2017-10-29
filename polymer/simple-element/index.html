@@ -3,10 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Simple polymer element example</title>
+    <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="./bower_components/polymer/polymer.html">
-    <link rel="import" href="./simple-element.html">
+    <link rel="import" href="./countdown-timer.html">
   </head>
   <body>
-    <simple-element></simple-element>
+    <countdown-timer></countdown-timer>
+
+
+    <script>
+      const timer = document.querySelector('countdown-timer');
+      function showRenderStatus(){
+        Polymer.RenderStatus.afterNextRender(timer, () => {
+          console.log('Timer re-rendered');
+          showRenderStatus();
+        });
+      }
+      showRenderStatus()
+    </script>
   </body>
 </html>

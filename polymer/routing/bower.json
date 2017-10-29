@@ -1,0 +1,20 @@
+{
+  "name": "routing",
+  "homepage": "https://github.com/ellenaua/kharkivjs",
+  "authors": [
+    "ellenaua <elenasharovar@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "app-route": "PolymerElements/app-route#^2.0.3"
+  }
+}

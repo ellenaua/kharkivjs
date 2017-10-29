@@ -9,16 +9,18 @@ class CountdownTimer extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'from') {
-            this.start(newValue);
-        }
+        // when "from" attribute changes, timer is started
+        if (name === 'from') this.start();
     }
 
-    start(from) {
-        let time = from;
+    start() {
+        let time = this.getAttribute('from');
         this.innerHTML = `Countdown: ${time}`;
+        if (this.interval) {
+            // stop previous countdown
+            this.stop();
+        }
         this.interval = setInterval(() => {
-            console.log('Tick')
             if (time > 0) {
                 this.innerHTML = `Countdown: ${--time}`;
             } else {
@@ -29,11 +31,6 @@ class CountdownTimer extends HTMLElement {
 
     stop(){
         clearInterval(this.interval);
-    }
-
-    restart(){
-        clearInterval(this.interval);
-        this.start(this.getAttribute('from'));
     }
 }
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>HTML Templates - Examples</title>
   <script>
-    function showMe(templateID) {
+    function loadTemplate(templateID) {
       var template = document.querySelector(templateID);
       var clone = document.importNode(template.content, true);
       document.body.appendChild(clone);
@@ -13,23 +13,26 @@
 </head>
 <body>
 
-  <template id="template1">
+  <h1>HTML templates example</h1>
+
+  <!-- Template with image inside -->
+  <template id="template_1">
     <img id="logo" src="https://www.polymer-project.org/images/logos/p-logo.png">
   </template>
 
-  <input type="button" onclick="showMe('#template1')" value="Show me image">
-
-  <template id="template2">
+  <!-- Template with styles inside -->
+  <template id="template_2">
     <link rel="stylesheet" href="./logo.css">
   </template>
 
-  <input type="button" onclick="showMe('#template2')" value="Load its CSS">
-
+  <!-- Template with javascript inside -->
   <template id="template3">
     <script src="./logo.js"></script>
   </template>
 
-  <input type="button" onclick="showMe('#template3')" value="And make it pulse">
+  <input type="button" onclick="loadTemplate('#template_1')" value="Show me image">
+  <input type="button" onclick="loadTemplate('#template_2')" value="Load its CSS">
+  <input type="button" onclick="loadTemplate('#template_3')" value="And make it animated">
 
   <div id="host"></div>
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Import</title>
+  <link rel="import" href="./imported-file.html" async>
+  <script>
+    function loadImportedFile(){
+      var link = document.querySelector('link[rel=import]');
+      var importedDocument = link.import;
+      document.body.appendChild(importedDocument.querySelector('h2'));
+      document.body.appendChild(importedDocument.querySelector('#logo'));
+    }
+  </script>
+</head>
+<body>
+  <h1>HTML import example</h1>
+  <input type="button" value="Load Imported File Contents" onclick="loadImportedFile()">
+</body>
+</html>

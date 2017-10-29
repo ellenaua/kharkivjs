@@ -1,0 +1,1 @@
+confirm('I am imported');
